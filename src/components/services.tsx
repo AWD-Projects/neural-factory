@@ -6,7 +6,7 @@ import { Section } from "./section";
 
 export function Services() {
   return (
-    <Section id="servicios" index="04" label="Servicios" title={SERVICES.title} titleWidth="max-w-[20ch]">
+    <Section id="servicios" title={SERVICES.title} titleWidth="max-w-[20ch]">
       <p className="reveal -mt-6 mb-14 max-w-[54ch] text-lg leading-relaxed text-paper/80 md:mb-20 md:text-xl">
         {SERVICES.intro}
       </p>

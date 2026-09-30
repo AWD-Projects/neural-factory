@@ -2,8 +2,6 @@ import { cn } from "@/lib/utils";
 
 type SectionProps = {
   id: string;
-  index: string;
-  label: string;
   title: string;
   children: React.ReactNode;
   className?: string;
@@ -17,8 +15,6 @@ type SectionProps = {
  */
 export function Section({
   id,
-  index,
-  label,
   title,
   children,
   className,
@@ -29,17 +25,6 @@ export function Section({
       <div className="container-page">
         <header className="mb-12 md:mb-20">
           <div className="rule h-px bg-paper/25" aria-hidden />
-          <div className="eyebrow flex items-baseline justify-between pt-4">
-            <span>
-              <span className="text-signal">{index}</span>
-              <span aria-hidden> — </span>
-              <span className="sr-only"> </span>
-              {label}
-            </span>
-            <span aria-hidden className="hidden sm:inline">
-              NF / {index}
-            </span>
-          </div>
           <h2
             id={`${id}-title`}
             className={cn(

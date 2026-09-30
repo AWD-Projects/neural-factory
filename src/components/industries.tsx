@@ -4,7 +4,7 @@ import { Section } from "./section";
 
 export function Industries() {
   return (
-    <Section id="industrias" index="05" label="Industrias" title={INDUSTRIES.title} titleWidth="max-w-[19ch]">
+    <Section id="industrias" title={INDUSTRIES.title} titleWidth="max-w-[19ch]">
       <p className="reveal -mt-6 mb-14 max-w-[50ch] text-lg leading-relaxed text-paper/80 md:mb-20 md:text-xl">
         {INDUSTRIES.text}
       </p>

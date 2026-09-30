@@ -58,12 +58,6 @@ export function AboutLedger({ items }: { items: readonly Item[] }) {
               />
             ))}
           </figure>
-          <p aria-hidden className="eyebrow mt-4 flex justify-between">
-            <span>{items[active].title}</span>
-            <span>
-              0{active + 1} / 0{items.length}
-            </span>
-          </p>
         </div>
       </div>
 
@@ -78,11 +72,8 @@ export function AboutLedger({ items }: { items: readonly Item[] }) {
             onMouseEnter={() => setActive(i)}
             className="reveal border-t border-paper/25 py-10 last:border-b md:py-14 lg:min-h-[36vh]"
           >
-            <p className="eyebrow">
-              <span className="text-signal">0{i + 1}</span>
-            </p>
             <h3
-              className="display mt-3 text-3xl md:text-4xl"
+              className="display text-3xl md:text-4xl"
               style={{ ["--wdth" as string]: 114 }}
             >
               {item.title}

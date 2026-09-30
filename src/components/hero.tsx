@@ -11,13 +11,9 @@ export function Hero() {
       <NetworkSphere className="pointer-events-none absolute -right-[38%] top-[14%] z-0 h-[min(125vw,900px)] w-[min(125vw,900px)] opacity-40 sm:-right-[14%] sm:top-[4%] sm:opacity-55 lg:-right-[6%] xl:right-[1%]" />
 
       <div className="container-page relative z-10 flex min-h-[100svh] flex-col pt-[calc(var(--header-h)+3.5rem)] md:pt-[calc(var(--header-h)+6rem)]">
-        <p className="eyebrow fade-in" style={{ ["--d" as string]: "40ms" }}>
-          {HERO.eyebrow}
-        </p>
-
         <h1
           id="hero-title"
-          className="display mt-8 max-w-[11.5em] text-[clamp(2.3rem,6.4vw,5.9rem)] leading-[0.96]"
+          className="display max-w-[11.5em] text-[clamp(2.3rem,6.4vw,5.9rem)] leading-[0.96]"
           style={{ ["--wdth" as string]: 112 }}
         >
           {words.map((word, i) => (

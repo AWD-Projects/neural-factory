@@ -5,7 +5,7 @@ import { Section } from "./section";
 
 export function Team() {
   return (
-    <Section id="equipo" index="02" label="Equipo" title={TEAM.title} titleWidth="max-w-[16ch]">
+    <Section id="equipo" title={TEAM.title} titleWidth="max-w-[16ch]">
       <p className="reveal -mt-6 mb-14 max-w-[52ch] text-lg leading-relaxed text-paper/80 md:mb-20 md:text-xl">
         {TEAM.intro}
       </p>

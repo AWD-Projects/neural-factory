@@ -7,13 +7,9 @@ export function Contact() {
       <div className="container-page grid gap-14 lg:grid-cols-12 lg:gap-x-6">
         <div className="lg:col-span-5">
           <div className="rule h-px bg-ink/50" aria-hidden />
-          <p className="pt-4 font-mono text-xs font-medium uppercase tracking-[0.14em]">
-            06<span aria-hidden> — </span>
-            <span className="sr-only"> </span>Contacto
-          </p>
           <h2
             id="contacto-title"
-            className="display reveal mt-8 text-[clamp(2.1rem,4.4vw,4rem)] leading-[0.98]"
+            className="display reveal mt-10 text-[clamp(2.1rem,4.4vw,4rem)] leading-[0.98]"
             style={{ ["--wdth" as string]: 116 }}
           >
             {CONTACT.title}
