@@ -25,9 +25,27 @@ export function NetworkSphere({ className }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Se inicia en tiempo ocioso para no competir con la hidratación (LCP/TBT en móvil).
+    let cleanup: (() => void) | undefined;
+    const boot = () => {
+      cleanup = init();
+    };
+    const w = window as unknown as {
+      requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    const idle = typeof w.requestIdleCallback === "function";
+    const id = idle ? w.requestIdleCallback!(boot, { timeout: 2500 }) : window.setTimeout(boot, 1200);
+    return () => {
+      if (idle) w.cancelIdleCallback?.(id);
+      else window.clearTimeout(id);
+      cleanup?.();
+    };
+
+    function init(): (() => void) | undefined {
     const canvas = ref.current;
     const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
+    if (!canvas || !ctx) return undefined;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rnd = mulberry32(11);
@@ -200,6 +218,7 @@ export function NetworkSphere({ className }: { className?: string }) {
       io.disconnect();
       document.removeEventListener("visibilitychange", onVis);
     };
+    }
   }, []);
 
   return <canvas ref={ref} aria-hidden className={className} />;
