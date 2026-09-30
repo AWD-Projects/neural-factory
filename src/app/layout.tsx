@@ -1,79 +1,103 @@
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+import { SEO, SITE } from "@/data/content";
+import { IS_PRODUCTION, SITE_URL } from "@/lib/site";
 
-export const metadata = {
-  title: "Neural Factory - Soluciones de Inteligencia Artificial y Machine Learning",
-  description: "Neural Factory empodera a empresas de diversas industrias para aprovechar el poder de la Inteligencia Artificial. Ofrecemos soluciones en Machine Learning, Aprendizaje Profundo y Visión por Computadora, optimizando operaciones y mejorando la toma de decisiones.",
-  keywords: [
-    "Neural Factory", 
-    "Inteligencia Artificial", 
-    "Machine Learning", 
-    "IA", 
-    "Aprendizaje Automático", 
-    "Aprendizaje Profundo", 
-    "Visión por Computadora", 
-    "soluciones de IA", 
-    "automatización", 
-    "transformación digital", 
-    "eficiencia empresarial",
-    "optimización de operaciones", 
-    "tomar decisiones", 
-    "crecimiento empresarial"
+const display = localFont({
+  src: "./fonts/Archivo-Variable.woff2",
+  variable: "--font-display",
+  weight: "100 900",
+  display: "swap",
+});
+
+const sans = localFont({
+  src: [
+    { path: "./fonts/ibm-plex-sans-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ibm-plex-sans-latin-500-normal.woff2", weight: "500", style: "normal" },
   ],
-  openGraph: {
-    title: "Neural Factory - Transformando Empresas con Inteligencia Artificial",
-    description: "Empoderamos a empresas con soluciones avanzadas de Inteligencia Artificial, desde Machine Learning hasta Visión por Computadora. Contáctenos para descubrir cómo optimizar sus operaciones.",
-    type: "website",
-    url: "https://neuralfactory.com",
-    images: [
-      {
-        url: "https://neuralfactory.com/images/logo-og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Neural Factory Logo",
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const mono = localFont({
+  src: [
+    { path: "./fonts/ibm-plex-mono-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ibm-plex-mono-latin-500-normal.woff2", weight: "500", style: "normal" },
+  ],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const TITLE = SEO.title;
+const DESCRIPTION = SEO.description;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: "%s | Neural Factory" },
+  description: DESCRIPTION,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name, url: SITE_URL }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  alternates: {
+    canonical: "/",
+    languages: { "es-MX": "/" },
+  },
+  robots: IS_PRODUCTION
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
       }
-    ],
+    : { index: false, follow: false },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: SITE.name,
+    locale: "es_MX",
+    title: TITLE,
+    description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    site: "@NeuralFactory",
-    title: "Neural Factory - Soluciones de IA para Empresas",
-    description: "Descubra cómo nuestras soluciones de IA y Machine Learning pueden optimizar sus operaciones e impulsar su crecimiento empresarial.",
-    image: "https://neuralfactory.com/images/logo-twitter.jpg",
+    site: SITE.twitterHandle,
+    title: TITLE,
+    description: DESCRIPTION,
   },
-  robots: "index, follow",
-  canonical: "https://neuralfactory.com",
-  author: "Neural Factory",
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
+  formatDetection: { telephone: false, email: false, address: false },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1a1a1a",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html
+      lang="es-MX"
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        /> 
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords.join(", ")} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:type" content={metadata.openGraph.type} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta property="og:image:width" content={metadata.openGraph.images[0].width.toString()} />
-        <meta property="og:image:height" content={metadata.openGraph.images[0].height.toString()} />
-        <meta name="twitter:card" content={metadata.twitter.card} />
-        <meta name="twitter:site" content={metadata.twitter.site} />
-        <meta name="twitter:title" content={metadata.twitter.title} />
-        <meta name="twitter:description" content={metadata.twitter.description} />
-        <meta name="twitter:image" content={metadata.twitter.image} />
-        <meta name="robots" content={metadata.robots} />
-        <link rel="canonical" href={metadata.canonical} />
+        {/* Marca que hay JS: sin él, todo el contenido queda visible. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
