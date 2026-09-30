@@ -1,4 +1,4 @@
-import { CTA, HERO, NAV } from "@/data/content";
+import { CTA, HERO } from "@/data/content";
 import { ArrowDown, ArrowRight } from "./icons";
 import { NetworkSphere } from "./network-sphere";
 
@@ -52,29 +52,7 @@ export function Hero() {
           </a>
         </div>
 
-        {/* Índice de la página: también sirve de enlazado interno */}
-        <nav
-          aria-label="Contenido de la página"
-          className="fade-in mt-auto pt-20 md:pt-28"
-          style={{ ["--d" as string]: "1000ms" }}
-        >
-          <ol className="grid grid-cols-2 border-t border-paper/25 md:grid-cols-5">
-            {NAV.map((item, i) => (
-              <li key={item.id} className="border-b border-paper/15 md:border-b-0 md:border-r md:last:border-r-0">
-                <a
-                  href={`#${item.id}`}
-                  className="group flex items-baseline justify-between gap-3 px-1 py-5 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:bg-signal hover:text-ink md:px-5"
-                >
-                  <span>
-                    <span className="mr-3 text-signal group-hover:text-ink">0{i + 1}</span>
-                    {item.label}
-                  </span>
-                  <ArrowRight className="h-4 w-4 -translate-x-1 opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <div className="mt-auto pb-16 md:pb-24" />
       </div>
     </section>
   );
