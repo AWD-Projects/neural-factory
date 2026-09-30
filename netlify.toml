@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Estas variables son públicas por diseño (van en el HTML). Sin esto, el escáner de
+  # secretos de Netlify las detecta en el bundle y hace fallar el build.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_GSC_VERIFICATION,NEXT_PUBLIC_NOINDEX,CONTEXT"
